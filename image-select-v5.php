@@ -21,7 +21,7 @@ class acf_field_image_select extends acf_field
 			'choices'			=>	array(),
 			'default_value'		=>	'',
 			'multiple'          => 0,
-			'image_path'		=>	get_template_directory_uri() . '/images/',
+			'image_path'		=>	'/images/',
 			'image_extension'   => 'png',
 		);
 		
@@ -90,7 +90,7 @@ class acf_field_image_select extends acf_field
 					
 					$e .= '<label for="' . $field_id . '" class="'.$class.'">';
 						$e .= '<input id="' . $field_id . '" class="item-input" type="radio" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' .  $atts  . ' />';
-						$e .= '<img class="item-image ' . $field_id . '-image" alt="'.$value.'" src="'.$field['image_path'].esc_attr($key).'.'.$field['image_extension'].'">';
+						$e .= '<img class="item-image ' . $field_id . '-image" alt="'.$value.'" src="'.esc_url(get_template_directory_uri().$field['image_path'].esc_attr($key).'.'.$field['image_extension']).'">';
 						$e .= '<br/>';
 						$e .= '<span class="item-title ' . $field_id . '-title">'.$value.'</span>';
 					$e .= '</label>';
@@ -257,7 +257,7 @@ class acf_field_image_select extends acf_field
 
 		// get value
 
-		$retvalue = $field['image_path'] . esc_attr($value) . '.'.$field['image_extension'];
+		$retvalue = esc_url(get_template_directory_uri().$field['image_path'] . esc_attr($value) . '.'.$field['image_extension']);
 
 		// format value
 
@@ -269,5 +269,3 @@ class acf_field_image_select extends acf_field
 }
 
 new acf_field_image_select();
-
-?>
